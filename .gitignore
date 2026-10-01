@@ -1,9 +1,8 @@
 .venv/
 __pycache__/
-uav_web/data/
-uav_web/models/
 *.log
 analysis/
-uav_web/tmp*/
 .env
 .env.*
+files.zip
+uav_web/

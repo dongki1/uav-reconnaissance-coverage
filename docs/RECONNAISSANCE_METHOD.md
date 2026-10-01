@@ -7,7 +7,7 @@
 2. Mostegel, C., Rumpler, M., Fraundorfer, F., & Bischof, H. (2016), *UAV-based Autonomous Image Acquisition with Multi-View Stereo Quality Assurance by Confidence Prediction*, CVPR Workshops. [논문 전체](https://arxiv.org/html/1605.01923v1).
    기존 관측의 품질 부족을 측정하고 추가 관측 위치를 선택하는 연구 방향을 참고했다. 본 구현은 학습된 MVS 신뢰도, SfM 및 카메라 triplet 최적화를 실행하지 않는다. 다음 촬영 후보 선택은 아래의 명시적 가중 면적 greedy 휴리스틱이다.
 3. Kim, J., Kim, Y., Kim, S., Cho, H., & Jung, D. (2025), *Vision-Based Geolocation of Moving Ground Targets Using Kalman Filtering with a Gimbal Camera on Board a UAV*, Aerospace 12(12), 1065. [출판사 원문](https://www.mdpi.com/2226-4310/12/12/1065).
-   기존 코드와 동일한 기체·짐벌 회전 및 광선/평면 교차를 사용한다. 칼만필터·표적추적은 본 작업의 대상이 아니다. 수식 대응은 `TECHNICAL_METHOD.md` 참조.
+   기존 코드와 동일한 기체·짐벌 회전 및 광선/평면 교차를 사용한다. 칼만필터·표적추적은 본 작업의 대상이 아니다. 회전식과 공간 투영은 아래 절 및 `reconnaissance/geometry.py` 참조.
 
 ## 데이터와 시간 동기
 

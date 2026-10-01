@@ -9,7 +9,7 @@ import subprocess
 
 import numpy as np
 from PIL import Image
-from uav_web.core import rotation
+from reconnaissance.geometry import rotation
 
 
 def read_json(path):

@@ -136,6 +136,7 @@ button.primary{background:#2f6fb3;border-color:#4a8bd0}button:disabled{opacity:.
 pre{background:#0b1320;padding:10px;border-radius:6px;max-height:260px;overflow:auto;white-space:pre-wrap;font-size:12px}.err{color:#ff8a80}.ok{color:#8be28b}
 </style><main>
 <h1>정찰 범위 분석</h1><div class="muted">실제 위성지도 위에 관측 격자를 겹쳐 추가 관측이 필요한 영역과 다음 촬영 후보를 확인합니다.</div>
+<p class="box"><a href="/examples/dangjin/report.html">예제 지도 열기</a> · 원본 영상 없이 실제 분석 결과와 예제 사진을 확인합니다.</p>
 <h2>분석 결과</h2><div class="box"><table><thead><tr><th>결과</th><th>원본 쏘티</th><th>분석영역</th><th>미관측</th><th>품질 부족</th><th>반복 부족</th><th>수정</th></tr></thead><tbody id="list"><tr><td colspan="7" class="muted">불러오는 중</td></tr></tbody></table></div>
 <div id="newBox"><h2>새 분석</h2><div class="box">
 <div class="row"><input id="path" placeholder="쏘티 폴더 경로 (post-flight\uavN\YYYYMMDD_HHMMSS) - 붙여넣기 또는 아래에서 탐색"></div>
@@ -213,6 +214,13 @@ class Handler(BaseHTTPRequestHandler):
             if path.startswith('/api/jobs/'):
                 with LOCK:
                     return self.reply(dict(JOBS[path.split('/')[3]]))
+            if path.startswith('/examples/'):
+                base = (ROOT / 'examples').resolve()
+                target = (base / path[len('/examples/'):]).resolve()
+                if base not in target.parents or not target.is_file():
+                    raise KeyError(path)
+                kind = mimetypes.guess_type(target.name)[0] or 'application/octet-stream'
+                return self.reply(target.read_bytes(), kind=kind)
             if path.startswith('/reports/'):
                 parts = path.split('/', 3)
                 if len(parts) < 4 or not parts[3]:

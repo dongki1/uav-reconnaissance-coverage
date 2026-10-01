@@ -6,7 +6,7 @@ from PIL import Image
 
 from reconnaissance.analyze import (LocalPlane, attitude, ground_to_image, inside_ring,
                                     patch_quality, plan_views, validate_row)
-from uav_web.core import DEFAULT_CAMERA, project
+from reconnaissance.geometry import DEFAULT_CAMERA, project
 
 
 class CoverageTests(unittest.TestCase):
